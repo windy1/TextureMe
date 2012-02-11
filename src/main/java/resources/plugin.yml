@@ -17,3 +17,6 @@ permissions:
   textureme.configure:
     description: Allows you to configure TextureMe via the GUI
     defualt: false
+  textureme.playerschoice:
+    description: Allows player to choose to default to his old pack
+    default: true
