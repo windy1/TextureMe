@@ -1,0 +1,19 @@
+name: TextureMe
+version: 0.3
+description: Choose a texture pack!
+author: Windwaker 
+main: net.windwaker.textureme.TextureMe
+database: false
+depend: [Spout]
+permissions:
+  textureme.*:
+    description: Gives access to all TextureMe commands
+    children:
+      textureme.select: true
+      textureme.configure: true
+  textureme.select:
+    description: Allows you to select a texture pack
+    default: false
+  textureme.configure:
+    description: Allows you to configure TextureMe via the GUI
+    defualt: false
