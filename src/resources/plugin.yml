@@ -1,5 +1,5 @@
 name: TextureMe
-version: 0.3
+version: "${project.version}"
 description: Choose a texture pack!
 author: Windwaker 
 main: net.windwaker.textureme.TextureMe
