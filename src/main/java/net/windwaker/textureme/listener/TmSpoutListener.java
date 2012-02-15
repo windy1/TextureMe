@@ -2,6 +2,7 @@ package net.windwaker.textureme.listener;
 
 import net.windwaker.textureme.TextureMe;
 
+import net.windwaker.textureme.logging.Logger;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -24,6 +25,7 @@ public class TmSpoutListener implements Listener {
 		if (!def.equalsIgnoreCase("default")) {
 			player.sendNotification("Default texture pack set!", "Downloading...", Material.GOLDEN_APPLE);
 			player.setTexturePack(plugin.getConfig().getString("texturepacks." + def + ".url"));
+			Logger.getInstance().player(player.getName() + " was assigned the default texture pack.");
 		}
 	}
 }

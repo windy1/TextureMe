@@ -1,15 +1,12 @@
 package net.windwaker.textureme;
 
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import net.windwaker.textureme.configuration.Configuration;
 import net.windwaker.textureme.gui.SelectorBindingDelegate;
 import net.windwaker.textureme.listener.TmPlayerListener;
 import net.windwaker.textureme.listener.TmSpoutListener;
 
+import net.windwaker.textureme.logging.Logger;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.getspout.spoutapi.SpoutManager;
@@ -17,55 +14,32 @@ import org.getspout.spoutapi.keyboard.Keyboard;
 
 public class TextureMe extends JavaPlugin {
 	
-	private static final Logger logger = Logger.getLogger("Minecraft");
-	private final SelectorBindingDelegate delegate = new SelectorBindingDelegate(this);
+	private static final Logger logger = Logger.getInstance();
 	
 	@Override
 	public void onEnable() {
+		logger.enable("TextureMe initializing...");
 		this.init();
-		logger.log(Level.INFO, "[TextureMe] TextureMe " + this.getDescription().getVersion() + " enabled!");
+		logger.enable("TextureMe v" + this.getDescription().getVersion() + " by Windwaker enabled!");
 	}
 	
 	@Override
 	public void onDisable() {
-		logger.log(Level.INFO, "[TextureMe] TextureMe " + this.getDescription().getVersion() + " disabled.");
+		logger.disable("TextureMe v" + this.getDescription().getVersion() + " by Windwaker disabled.");
 	}
 	
 	public void init() {
-		this.initConfig();
+		Configuration config = new Configuration("plugins/TextureMe/config.yml");
+		config.load();
+		config.options().copyDefaults(true);
+		config.save();
 		this.registerEvents();
-		SpoutManager.getKeyBindingManager().registerBinding("textureme", Keyboard.KEY_GRAVE, "Toggles the selector", delegate, this);
+		SpoutManager.getKeyBindingManager().registerBinding("textureme_open_selector", Keyboard.KEY_P, "Toggles the selector", new SelectorBindingDelegate(this), this);
 	}
 	
 	public void registerEvents() {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new TmSpoutListener(this), this);
 		pm.registerEvents(new TmPlayerListener(this), this);
-	}
-	
-	public void initConfig() {
-		try {
-			File file = new File("plugins/TextureMe/config.yml");
-			if (!file.exists()) {
-				this.getConfig().addDefault("prompt title", ChatColor.YELLOW + "Texture Packs");
-				this.getConfig().addDefault("prompt on login", false);
-				this.getConfig().addDefault("default texture pack", "default");
-				this.getConfig().addDefault("texturepacks.dokucraftlight.name", "Dokucraft - Light");
-				this.getConfig().addDefault("texturepacks.dokucraftlight.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20Light.zip");
-				this.getConfig().addDefault("texturepacks.dokucraftdark.name", "Dokucraft - Dark");
-				this.getConfig().addDefault("texturepacks.dokucraftdark.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20Dark.zip");
-				this.getConfig().addDefault("texturepacks.dokucrafthigh.name", "Dokucraft - High");
-				this.getConfig().addDefault("texturepacks.dokucrafthigh.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20High.zip");
-				this.getConfig().options().copyDefaults(true);
-				this.saveConfig();
-			} else {
-				this.getConfig().addDefault("prompt title", "&eTexture Packs");
-				this.getConfig().addDefault("prompt on login", false);
-				this.getConfig().addDefault("default texture pack", "default");
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
