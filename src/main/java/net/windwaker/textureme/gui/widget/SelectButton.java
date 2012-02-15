@@ -29,6 +29,10 @@ public class SelectButton extends GenericButton {
 			if (!list.getSelectedItem().getTitle().equals(ChatColor.YELLOW + "Player's Choice")) {
 				player.setTexturePack(plugin.getConfig().getString("texturepacks." + this.getSelectedId() + ".url"));
 				player.sendNotification("Texture pack selected!", "Downloading...", Material.GOLDEN_APPLE);
+				if (plugin.getConfig().getBoolean("remember selections")) {
+					plugin.getUsers().set("players." + player.getName() + ".texture pack", this.getSelectedId());
+					plugin.getUsers().save();
+				}
 			} else if (player.hasPermission("textureme.playerschoice")) {
 				player.resetTexturePack();
 				player.sendNotification("Texture pack removed!", "", Material.GOLDEN_APPLE);

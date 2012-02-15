@@ -15,6 +15,7 @@ public class SelectorBindingDelegate implements BindingExecutionDelegate {
 		this.plugin = plugin;
 	}
 	
+	@Override
 	public void keyPressed(KeyBindingEvent event) {
 		SpoutPlayer player = event.getPlayer();
 		if(player.hasPermission("textureme.select")) {
@@ -28,6 +29,7 @@ public class SelectorBindingDelegate implements BindingExecutionDelegate {
 		}
 	}
 
+	@Override
 	public void keyReleased(KeyBindingEvent event) {
 		// Nothing		
 	}

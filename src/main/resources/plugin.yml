@@ -11,12 +11,13 @@ permissions:
     children:
       textureme.select: true
       textureme.configure: true
+      textureme.playerschoice: true
   textureme.select:
     description: Allows you to select a texture pack
-    default: false
+    default: true
   textureme.configure:
     description: Allows you to configure TextureMe via the GUI
-    defualt: false
+    default: false
   textureme.playerschoice:
     description: Allows player to choose to default to his old pack
     default: true
