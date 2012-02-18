@@ -4,7 +4,6 @@ import net.windwaker.textureme.TextureMe;
 import net.windwaker.textureme.gui.Selector;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -17,7 +16,7 @@ public class TmPlayerListener implements Listener {
 		this.plugin = plugin;
 	}
 	
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void attachPrompt(PlayerJoinEvent event) {
 		SpoutPlayer player = (SpoutPlayer) event.getPlayer();
 		if(plugin.getConfig().getBoolean("prompt on login") && player.hasPermission("textureme.select")) {
