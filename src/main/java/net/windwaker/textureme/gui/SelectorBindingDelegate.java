@@ -20,7 +20,7 @@ public class SelectorBindingDelegate implements BindingExecutionDelegate {
 		SpoutPlayer player = event.getPlayer();
 		if(player.hasPermission("textureme.select")) {
 			if(player.getMainScreen().getActivePopup() instanceof Selector) {
-				//player.getMainScreen().getActivePopup().close();
+				player.getMainScreen().getActivePopup().close();
 			}else{
 				player.getMainScreen().attachPopupScreen(new Selector(plugin, player));
 			}
