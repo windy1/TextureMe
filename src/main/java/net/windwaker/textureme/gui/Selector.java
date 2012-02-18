@@ -61,8 +61,6 @@ public class Selector extends GenericPopup {
 		close.setX(155).setY(195);
 		close.setWidth(60).setHeight(20);
 		close.setPriority(RenderPriority.Lowest);
-		close.setTooltip(ChatColor.RED + "A Spout bug has broken this button! Press ESC to close.");
-		close.setEnabled(false);
 				
 		// Configure button
 		configure = new ConfigureButton(plugin, list, new ConfigMenu(plugin));
