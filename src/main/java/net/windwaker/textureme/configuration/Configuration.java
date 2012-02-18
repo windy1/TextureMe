@@ -63,7 +63,7 @@ public class Configuration extends YamlConfiguration {
 		} catch (IOException e) {
 			logger.severe("Config file at " + file.getAbsolutePath() + " failed to load: " + e.getMessage());
 		} catch (InvalidConfigurationException ce) {
-			logger.severe("Config at " + file.getAbsolutePath() + " failed to load: " + ce.getMessage());
+			logger.severe("Config file at " + file.getAbsolutePath() + " failed to load: " + ce.getMessage());
 		}
 	}
 	
