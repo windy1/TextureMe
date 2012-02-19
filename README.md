@@ -18,7 +18,7 @@ Installation
 
 Credits
 -------
-[![Windwaker](http://www.gravatar.com/avatar/942913bba29c93344d8a2e4da56c6bf1.jpg)](http://forums.spout.org/members/windwaker.47/)
+[![Windwaker](http://www.gravatar.com/avatar/942913bba29c93344d8a2e4da56c6bf1.png)](http://forums.spout.org/members/windwaker.47/)
 
 [Spout Wiki]: http://wiki.spout.org
 [Spout Link]: http://spout.in
