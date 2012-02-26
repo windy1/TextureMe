@@ -19,7 +19,7 @@ public class TmPlayerListener implements Listener {
 	@EventHandler
 	public void attachPrompt(PlayerJoinEvent event) {
 		SpoutPlayer player = (SpoutPlayer) event.getPlayer();
-		if(plugin.getConfig().getBoolean("prompt on login") && player.hasPermission("textureme.select")) {
+		if(plugin.getConfig().promptLogins() && player.hasPermission("textureme.select")) {
 			player.getMainScreen().attachPopupScreen(new Selector(plugin, player));
 		}
 	}

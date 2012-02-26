@@ -7,10 +7,8 @@ import net.windwaker.textureme.gui.widget.ConfigureButton;
 import net.windwaker.textureme.gui.widget.SelectButton;
 import net.windwaker.textureme.gui.widget.TexturePackList;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.getspout.spoutapi.gui.Color;
-import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericGradient;
 import org.getspout.spoutapi.gui.GenericLabel;
 import org.getspout.spoutapi.gui.GenericListWidget;
@@ -20,18 +18,9 @@ import org.getspout.spoutapi.gui.RenderPriority;
 
 public class Selector extends GenericPopup {
 	
-	public TextureMe plugin;
-	private GenericListWidget list;
-	
-	private GenericButton select;
-	private GenericButton close;
-	private GenericButton configure;
-	
 	public Selector(TextureMe plugin, Player player) {
-		this.plugin = plugin;
-		
 		// Label
-		GenericLabel label = new GenericLabel(plugin.getConfig().getString("prompt title"));
+		GenericLabel label = new GenericLabel(plugin.getConfig().getPromptTitle());
 		label.setX(175).setY(25);
 		label.setPriority(RenderPriority.Lowest);
 		label.setWidth(-1).setHeight(-1);
@@ -51,25 +40,25 @@ public class Selector extends GenericPopup {
 		gradient.setPriority(RenderPriority.Highest);
 		
 		// Texture list
-		list = new TexturePackList(plugin);
+		GenericListWidget list = new TexturePackList(plugin);
 		list.setX(90).setY(50);
 		list.setWidth(250).setHeight(125);
 		list.setPriority(RenderPriority.Lowest);
 		
 		// Close button
-		close = new CloseButton();
+		CloseButton close = new CloseButton();
 		close.setX(155).setY(195);
 		close.setWidth(60).setHeight(20);
 		close.setPriority(RenderPriority.Lowest);
 				
 		// Configure button
-		configure = new ConfigureButton(plugin, list, new ConfigMenu(plugin));
+		ConfigureButton configure = new ConfigureButton(plugin, list, new ConfigMenu(plugin));
 		configure.setX(215).setY(195);
 		configure.setWidth(60).setHeight(20);
 		configure.setPriority(RenderPriority.Lowest);
 		
 		// Select button
-		select = new SelectButton(plugin, list);
+		SelectButton select = new SelectButton(plugin, list);
 		select.setX(95).setY(195);
 		select.setWidth(60).setHeight(20);
 		select.setPriority(RenderPriority.Lowest);

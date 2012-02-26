@@ -4,6 +4,9 @@ import java.util.Set;
 
 import net.windwaker.textureme.TextureMe;
 
+import net.windwaker.textureme.configuration.Packs;
+import net.windwaker.textureme.configuration.Settings;
+import net.windwaker.textureme.configuration.Users;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
@@ -25,31 +28,37 @@ public class SelectButton extends GenericButton {
 	@Override
 	public void onButtonClick(ButtonClickEvent event) {
 		SpoutPlayer player = event.getPlayer();
+		Packs packs = plugin.getPacks();
+		Settings config = plugin.getConfig();
+		Users users = plugin.getUsers();
 		if (list.getSelectedItem() != null) {
 			if (!list.getSelectedItem().getTitle().equals(ChatColor.YELLOW + "Player's Choice")) {
-				player.setTexturePack(plugin.getConfig().getString("texturepacks." + this.getSelectedId() + ".url"));
-				player.sendNotification("Texture pack selected!", "Downloading...", Material.GOLDEN_APPLE);
-				if (plugin.getConfig().getBoolean("remember selections")) {
-					plugin.getUsers().set("players." + player.getName() + ".texture pack", this.getSelectedId());
-					plugin.getUsers().save();
+				player.setTexturePack(packs.getPackAddress(this.getSelectedId()));
+				TextureMe.getInstance().sendNotification(player, "Downloading pack...");
+				if (config.rememberSelections()) {
+					users.setSelection(player.getName(), this.getSelectedId());
 				}
+				
 			} else if (player.hasPermission("textureme.playerschoice")) {
 				player.resetTexturePack();
-				player.sendNotification("Texture pack removed!", "", Material.GOLDEN_APPLE);
+				users.setSelection(player.getName(), "no selection");
+				TextureMe.getInstance().sendNotification(player, "Pack removed!");
 			} else {
-				player.sendNotification(ChatColor.RED + "Error", "No permission", Material.GOLDEN_APPLE);
+				player.sendMessage(ChatColor.RED + "Error: No permission.");
 			}
 		}
 	}
 	
 	public String getSelectedId() {
-		Set<String> ids = plugin.getConfig().getConfigurationSection("texturepacks").getKeys(false);
+		Packs packs = plugin.getPacks();
+		Set<String> ids = packs.getPacks();
 		for(String id : ids) {
-			String name = plugin.getConfig().getString("texturepacks." + id + ".name");
+			String name = packs.getPackName(id);
 			if (name.equalsIgnoreCase(list.getSelectedItem().getTitle())) {
 				return id;
 			}
 		}
+		
 		return null;
 	}
 }

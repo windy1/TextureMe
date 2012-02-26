@@ -9,12 +9,10 @@ import org.getspout.spoutapi.gui.GenericTextField;
 
 public class Creator extends GenericContainer {
 	
-	private GenericTextField id;
-	private GenericTextField name;
-	private GenericTextField url;
-	
-	private GenericButton button;
-	
+	private final GenericTextField id;
+	private final GenericTextField name;
+	private final GenericTextField url;
+		
 	public Creator(TextureMe plugin) {
 		
 		id = new GenericTextField();
@@ -32,7 +30,7 @@ public class Creator extends GenericContainer {
 		url.setWidth(200).setHeight(20);
 		url.setText("Url...");
 		
-		button = new FinishButton(plugin, this);
+		GenericButton button = new FinishButton(plugin, this);
 		button.setX(110).setY(130);
 		button.setWidth(200).setHeight(20);
 		

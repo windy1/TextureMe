@@ -1,6 +1,7 @@
 package net.windwaker.textureme.gui.widget;
 
 import net.windwaker.textureme.TextureMe;
+import net.windwaker.textureme.configuration.Packs;
 import net.windwaker.textureme.gui.container.Creator;
 
 import org.bukkit.ChatColor;
@@ -26,14 +27,15 @@ public class FinishButton extends GenericButton {
 		String id = creator.getIdText();
 		String name = creator.getName();
 		String url = creator.getUrl();
+		Packs packs = plugin.getPacks();
 		if (!id.isEmpty() && !name.isEmpty() && !url.isEmpty()) {
-			plugin.getConfig().set("texturepacks." + id + ".name", name);
-			plugin.getConfig().set("texturepacks." + id + ".url", url);
+			packs.setPackName(id, name);
+			packs.setPackAddress(id, url);
 			plugin.saveConfig();
-			player.sendNotification("Texture pack added!", "", Material.GOLDEN_APPLE);
+			TextureMe.getInstance().sendNotification(player, "Pack added!");
 			creator.clearText();
 		} else {
-			player.sendNotification(ChatColor.RED + "Error", "Fields must not be blank", Material.GOLDEN_APPLE);
+			TextureMe.getInstance().sendNotification(player, "Fields must not be blank!");
 		}
 	}
 }

@@ -5,7 +5,7 @@
   <!-- Project info -->
   <groupId>net.windwaker</groupId>
   <artifactId>textureme</artifactId>
-  <version>0.3</version>
+  <version>0.4</version>
   <packaging>jar</packaging>
   <name>TextureMe</name>
   <url>http://dev.bukkit.org/server-mods/textureme/</url>

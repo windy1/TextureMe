@@ -4,6 +4,7 @@ import java.util.Set;
 
 import net.windwaker.textureme.TextureMe;
 
+import net.windwaker.textureme.configuration.Packs;
 import org.bukkit.ChatColor;
 import org.getspout.spoutapi.gui.GenericListWidget;
 import org.getspout.spoutapi.gui.ListWidgetItem;
@@ -13,10 +14,11 @@ public class TexturePackList extends GenericListWidget {
 	public TexturePackList(TextureMe plugin) {
 			
 		// Textures
+		Packs packs = plugin.getPacks();
 		this.addItem(new ListWidgetItem(ChatColor.YELLOW + "Player's Choice", ""));
-		Set<String> ids = plugin.getConfig().getConfigurationSection("texturepacks").getKeys(false);
+		Set<String> ids = packs.getPacks();
 		for (String id : ids) {
-			String name = plugin.getConfig().getString("texturepacks." + id + ".name");
+			String name = packs.getPackName(id);
 			this.addItem(new ListWidgetItem(name, ""));
 		}
 	}
