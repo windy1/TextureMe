@@ -4,8 +4,6 @@ import net.windwaker.textureme.TextureMe;
 import net.windwaker.textureme.configuration.Packs;
 import net.windwaker.textureme.gui.container.Creator;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -32,10 +30,10 @@ public class FinishButton extends GenericButton {
 			packs.setPackName(id, name);
 			packs.setPackAddress(id, url);
 			plugin.saveConfig();
-			TextureMe.getInstance().sendNotification(player, "Pack added!");
+			plugin.sendNotification(player, "Pack added!");
 			creator.clearText();
 		} else {
-			TextureMe.getInstance().sendNotification(player, "Fields must not be blank!");
+			plugin.sendNotification(player, "Fields must not be blank!");
 		}
 	}
 }

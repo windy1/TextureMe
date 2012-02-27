@@ -6,9 +6,7 @@ import net.windwaker.textureme.configuration.Packs;
 import net.windwaker.textureme.configuration.Settings;
 import net.windwaker.textureme.configuration.Users;
 import net.windwaker.textureme.logging.Logger;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.getspout.spoutapi.event.spout.SpoutCraftEnableEvent;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -22,7 +20,7 @@ public class TmSpoutListener implements Listener {
 		this.plugin = plugin;
 	}
 	
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler
 	public void setTexturePack(SpoutCraftEnableEvent event) {
 		SpoutPlayer player = event.getPlayer();
 		Settings config = plugin.getConfig();
@@ -30,12 +28,12 @@ public class TmSpoutListener implements Listener {
 		Packs packs = plugin.getPacks();
 		if (config.rememberSelections() && users.hasSelection(player.getName())) {
 			player.setTexturePack(packs.getPackAddress(users.getSelection(player.getName())));
-			TextureMe.getInstance().sendNotification(player, "Selection remembered!");
+			plugin.sendNotification(player, "Selection remembered!");
 			logger.player(player.getName() 
 					+ "'s texture pack was set to their selection. If this is a mistake, disable 'remember selections' in the config.");
 		} else if (config.useDefault()) {
 			player.setTexturePack(packs.getPackAddress(config.getDefaultPack()));
-			TextureMe.getInstance().sendNotification(player, "Downloading pack...");
+			plugin.sendNotification(player, "Downloading pack...");
 			logger.player(player.getName() + "'s texture pack was set to the default texture pack.");
 		}
 	}

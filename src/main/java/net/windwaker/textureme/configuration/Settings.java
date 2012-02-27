@@ -26,7 +26,7 @@ public class Settings extends Configuration {
 	}
 	
 	public boolean rememberSelections() {
-		return getBoolean("remember selections");
+		return getBoolean("remember selections", false);
 	}
 	
 	public boolean promptLogins() {

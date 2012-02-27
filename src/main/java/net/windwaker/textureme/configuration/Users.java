@@ -1,8 +1,11 @@
 package net.windwaker.textureme.configuration;
 
 import java.io.File;
+import net.windwaker.textureme.TextureMe;
 
 public class Users extends Configuration {
+	
+	private final TextureMe plugin = TextureMe.getInstance();
 	
 	public Users() {
 		super(new File("plugins/TextureMe/users.yml"));
@@ -28,7 +31,7 @@ public class Users extends Configuration {
 	}
 	
 	public boolean hasSelection(String name) {
-		return !getString("users." + name + ".texture pack").equalsIgnoreCase("no selection") 
-				&& !getString("users." + name + ".texture pack").isEmpty();
+		String selection = this.getString("users." + name + ".texture pack", "");
+		return !selection.equalsIgnoreCase("no selection") && !selection.equals("");
 	}
 }
