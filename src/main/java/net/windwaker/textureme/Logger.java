@@ -1,4 +1,4 @@
-package net.windwaker.textureme.logging;
+package net.windwaker.textureme;
 
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
@@ -9,6 +9,10 @@ public class Logger {
 	
 	private Logger() {
 		
+	}
+
+	public static Logger getInstance() {
+		return logger;
 	}
 	
 	public void log(Level level, Object obj) {
@@ -29,25 +33,5 @@ public class Logger {
 	
 	public void config(Object obj) {
 		log(Level.CONFIG, obj);
-	}
-	
-	public void debug(Object obj) {
-		log(PluginLevel.DEBUG, obj);
-	}
-	
-	public void enable(Object obj) {
-		log(PluginLevel.ENABLE, obj);
-	}
-	
-	public void disable(Object obj) {
-		log(PluginLevel.DISABLE, obj);
-	}
-	
-	public void player(Object obj) {
-		log(PluginLevel.PLAYER, obj);
-	}
-	
-	public static Logger getInstance() {
-		return logger;
 	}
 }

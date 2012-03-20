@@ -2,7 +2,8 @@ package net.windwaker.textureme.configuration;
 
 import java.io.File;
 import java.io.IOException;
-import net.windwaker.textureme.logging.Logger;
+
+import net.windwaker.textureme.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -13,7 +14,7 @@ public class Configuration extends YamlConfiguration {
 	
 	/**
 	 * Constructs a Configuration
-	 * @param path to configuration file desired.
+	 * @param file to configuration file desired.
 	 */
 	public Configuration(File file) {
 		this.file = file;

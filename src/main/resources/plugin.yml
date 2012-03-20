@@ -4,7 +4,7 @@ description: Choose a texture pack!
 author: Windwaker 
 main: net.windwaker.textureme.TextureMe
 database: false
-depend: [Spout]
+softdepend: [Spout]
 permissions:
   textureme.*:
     description: Gives access to all TextureMe commands
