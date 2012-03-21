@@ -8,10 +8,8 @@ import net.windwaker.textureme.listener.EventListener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.getspout.spoutapi.Spout;
 import org.getspout.spoutapi.SpoutManager;
 import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -48,7 +46,12 @@ public class TextureMe extends JavaPlugin {
 		pluginManager.registerEvents(new EventListener(), this);
 
 		// Register key binding
-		SpoutManager.getKeyBindingManager().registerBinding("textureme_open_selector", Keyboard.KEY_F7, "Toggles the selector"
+		Keyboard key = Keyboard.valueOf("KEY_" + config.getKeyBinding());
+		if (key == null) {
+			key = Keyboard.KEY_F7;
+		}
+
+		SpoutManager.getKeyBindingManager().registerBinding("textureme_open_selector", key, "Toggles the selector"
 		, new SelectorBindingDelegate(this), this);
 
 		// Hello world!

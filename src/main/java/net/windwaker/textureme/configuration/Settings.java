@@ -12,13 +12,18 @@ public class Settings extends Configuration {
 	@Override
 	public void load() {
 		super.load();
-		this.addDefault("notification id", 322);
-		this.addDefault("remember selections", true);
-		this.addDefault("prompt title", ChatColor.YELLOW + "Texture Packs");
-		this.addDefault("prompt on login", false);
-		this.addDefault("default texture pack", "default");
+		this.addDefault("default-key-binding", "F7");
+		this.addDefault("notification-id", 322);
+		this.addDefault("remember-selections", true);
+		this.addDefault("prompt-title", ChatColor.YELLOW + "Texture Packs");
+		this.addDefault("prompt-on-login", false);
+		this.addDefault("default-texture-pack", "default");
 		this.options().copyDefaults(true);
 		this.save();
+	}
+	
+	public String getKeyBinding() {
+		return getString("default-key-binding");
 	}
 	
 	public String getPromptTitle() {
