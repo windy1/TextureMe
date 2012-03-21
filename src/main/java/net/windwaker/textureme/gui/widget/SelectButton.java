@@ -32,12 +32,16 @@ public class SelectButton extends GenericButton {
 		Users users = plugin.getUsers();
 		if (list.getSelectedItem() != null) {
 			if (!list.getSelectedItem().getTitle().equals(ChatColor.YELLOW + "Player's Choice")) {
-				player.setTexturePack(packs.getPackAddress(this.getSelectedId()));
-				plugin.sendNotification(player, "Downloading pack...");
-				if (config.rememberSelections()) {
-					users.setSelection(player.getName(), this.getSelectedId());
+				if (player.hasPermission(packs.getPackNode(getSelectedId()))) {
+					player.setTexturePack(packs.getPackAddress(this.getSelectedId()));
+					plugin.sendNotification(player, "Downloading pack...");
+					if (config.rememberSelections()) {
+						users.setSelection(player.getName(), this.getSelectedId());
+					}
+				} else {
+					player.sendMessage(ChatColor.RED + "Error: No permission!");
 				}
-				
+
 			} else if (player.hasPermission("textureme.playerschoice")) {
 				player.resetTexturePack();
 				users.setSelection(player.getName(), "no selection");

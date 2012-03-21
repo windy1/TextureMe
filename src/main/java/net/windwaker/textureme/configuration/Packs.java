@@ -15,13 +15,20 @@ public class Packs extends Configuration {
 		if (this.getConfigurationSection("texturepacks") == null) {
 			this.addDefault("texturepacks.dokucraftlight.name", "Dokucraft - Light");
 			this.addDefault("texturepacks.dokucraftlight.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20Light.zip");
+			this.addDefault("texturepacks.dokucraftlight.node", "");
 			this.addDefault("texturepacks.dokucraftdark.name", "Dokucraft - Dark");
 			this.addDefault("texturepacks.dokucraftdark.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20Dark.zip");
+			this.addDefault("texturepacks.dokucraftdark.node", "");
 			this.addDefault("texturepacks.dokucrafthigh.name", "Dokucraft - High");
 			this.addDefault("texturepacks.dokucrafthigh.url", "http://dl.dropbox.com/u/27507830/TextureMe/DokuCraft%20-%20High.zip");
+			this.addDefault("texturepacks.dokucrafthigh.node", "");
 			this.options().copyDefaults(true);
 			this.save();
 		}
+	}
+	
+	public String getPackNode(String id) {
+		return getString("texturepacks." + id + ".node");
 	}
 	
 	public String getPackAddress(String id) {
