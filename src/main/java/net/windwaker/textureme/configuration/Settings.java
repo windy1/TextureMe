@@ -4,7 +4,6 @@ import java.io.File;
 import org.bukkit.ChatColor;
 
 public class Settings extends Configuration {
-	
 	public Settings() {
 		super(new File("plugins/TextureMe/config.yml"));
 	}
@@ -27,26 +26,26 @@ public class Settings extends Configuration {
 	}
 	
 	public String getPromptTitle() {
-		return getString("prompt title").replaceAll("&", "§");
+		return getString("prompt-title").replaceAll("&", "§");
 	}
 	
 	public boolean rememberSelections() {
-		return getBoolean("remember selections", false);
+		return getBoolean("remember-selections", false);
 	}
 	
 	public boolean promptLogins() {
-		return getBoolean("prompt on login");
+		return getBoolean("prompt-on-login");
 	}
 	
 	public boolean useDefault() {
-		return !getString("default texture pack").equalsIgnoreCase("default");
+		return !getString("default-texture-pack").equalsIgnoreCase("default");
 	}
 	
 	public String getDefaultPack() {
-		return getString("default texture pack");
+		return getString("default-texture-pack");
 	}
 	
 	public int getNotificationId() {
-		return getInt("notification id");
+		return getInt("notification-id");
 	}
 }

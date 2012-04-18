@@ -9,7 +9,6 @@ import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.PopupScreen;
 
 public class DeleteButton extends GenericButton {
-	
 	private TextureMe plugin;
 	private ConfigMenu config;
 	private Deleter deleter;

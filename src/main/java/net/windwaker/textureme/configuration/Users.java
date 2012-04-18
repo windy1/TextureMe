@@ -4,7 +4,6 @@ import java.io.File;
 import net.windwaker.textureme.TextureMe;
 
 public class Users extends Configuration {
-	
 	private final TextureMe plugin = TextureMe.getInstance();
 	
 	public Users() {

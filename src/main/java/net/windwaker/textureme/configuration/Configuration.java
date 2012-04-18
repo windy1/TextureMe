@@ -7,8 +7,7 @@ import net.windwaker.textureme.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-public class Configuration extends YamlConfiguration {
-	
+public abstract class Configuration extends YamlConfiguration {
 	private File file;
 	private final Logger logger = Logger.getInstance();
 	
@@ -18,6 +17,10 @@ public class Configuration extends YamlConfiguration {
 	 */
 	public Configuration(File file) {
 		this.file = file;
+	}
+	
+	public Configuration(String path) {
+		this.file = new File(path);
 	}
 	
 	/**
@@ -41,15 +44,15 @@ public class Configuration extends YamlConfiguration {
 	 */
 	public void load() {
 		try {
+
+			// Create our file if it doesn't exist
 			if (!file.exists()) {
 				file.getParentFile().mkdirs();
 				file.createNewFile();
-				this.load(file);
-				logger.config("Created and loaded config file at: " + file.getAbsolutePath());
-			} else {
-				this.load(file);
-				logger.config("Loaded config file at: " + file.getAbsolutePath());
 			}
+
+			load(file);
+			logger.config("Loaded configuration file at " + file.getAbsolutePath());
 		} catch (IOException e) {
 			logger.severe("Config file at " + file.getAbsolutePath() + " failed to load: " + e.getMessage());
 		} catch (InvalidConfigurationException ce) {

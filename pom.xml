@@ -5,7 +5,7 @@
   <!-- Project info -->
   <groupId>net.windwaker</groupId>
   <artifactId>textureme</artifactId>
-  <version>0.4.1</version>
+  <version>0.5</version>
   <packaging>jar</packaging>
   <name>TextureMe</name>
   <url>http://dev.bukkit.org/server-mods/textureme/</url>
@@ -24,7 +24,7 @@
 	  <dependency>
 		  <groupId>org.bukkit</groupId>
 		  <artifactId>bukkit</artifactId>
-		  <version>1.1-R6</version>
+		  <version>1.2.5-R1.0</version>
 	  </dependency>
 	  <dependency>
 		  <groupId>org.getspout</groupId>

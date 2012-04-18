@@ -7,7 +7,6 @@ import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.ListWidgetItem;
 
 public class DeleterButton extends GenericButton {
-	
 	private final TexturePackList list;
 	private final TextureMe plugin = TextureMe.getInstance();
 	

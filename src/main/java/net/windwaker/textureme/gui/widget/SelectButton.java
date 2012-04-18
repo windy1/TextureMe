@@ -30,25 +30,53 @@ public class SelectButton extends GenericButton {
 		Packs packs = plugin.getPacks();
 		Settings config = plugin.getConfig();
 		Users users = plugin.getUsers();
-		if (list.getSelectedItem() != null) {
-			if (!list.getSelectedItem().getTitle().equals(ChatColor.YELLOW + "Player's Choice")) {
-				if (player.hasPermission(packs.getPackNode(getSelectedId()))) {
-					player.setTexturePack(packs.getPackAddress(this.getSelectedId()));
-					plugin.sendNotification(player, "Downloading pack...");
-					if (config.rememberSelections()) {
-						users.setSelection(player.getName(), this.getSelectedId());
-					}
-				} else {
-					player.sendMessage(ChatColor.RED + "Error: No permission!");
-				}
+		String id = getSelectedId();
+		boolean permission;
+		boolean removePack = false;
+		String url = packs.getPackAddress(id);
 
-			} else if (player.hasPermission("textureme.playerschoice")) {
-				player.resetTexturePack();
-				users.setSelection(player.getName(), "no selection");
-				plugin.sendNotification(player, "Pack removed!");
-			} else {
-				player.sendMessage(ChatColor.RED + "Error: No permission.");
-			}
+		if (list.getSelectedItem().getTitle().equals(ChatColor.YELLOW + "Player's Choice") && player.hasPermission("textureme.playerschoice")) {
+			permission = true;
+			removePack = true;
+		}
+
+		if (!removePack && packs.getPackAddress(id) == null | !packs.getPackAddress(id).endsWith(".zip")) {
+			player.sendMessage(ChatColor.RED + "Error: Invalid URL");
+			return;
+		}
+		
+		if (packs.getPackName(id) == null && !removePack) {
+			player.sendMessage(ChatColor.RED + "Error: Invalid pack");
+			return;
+		}
+		
+		if (packs.getPackNode(id) == null || player.hasPermission("textureme.playerschoice") && !removePack) {
+			permission = true;
+		} else {
+			permission = false;
+		}
+		
+		if (list.getSelectedItem() == null) {
+			plugin.sendNotification(player, "Please select a texture pack.");
+			return;
+		}
+
+		if (!permission) {
+			player.sendMessage("Error: No permission.");
+			return;
+		}
+		
+		if (removePack) {
+			player.resetTexturePack();
+			users.setSelection(player.getName(),  "no selection");
+			plugin.sendNotification(player, "Pack removed!");
+			return;
+		}
+
+		player.setTexturePack(url);
+		plugin.sendNotification(player, "Downloading pack...");
+		if (config.rememberSelections()) {
+			users.setSelection(player.getName(), id);
 		}
 	}
 	

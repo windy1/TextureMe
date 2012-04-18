@@ -10,9 +10,8 @@ import org.getspout.spoutapi.gui.GenericListWidget;
 import org.getspout.spoutapi.gui.ListWidgetItem;
 
 public class TexturePackList extends GenericListWidget {
-		
+
 	public TexturePackList(TextureMe plugin) {
-			
 		// Textures
 		Packs packs = plugin.getPacks();
 		this.addItem(new ListWidgetItem(ChatColor.YELLOW + "Player's Choice", ""));

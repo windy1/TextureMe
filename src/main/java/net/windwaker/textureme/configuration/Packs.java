@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.Set;
 
 public class Packs extends Configuration {
-	
 	public Packs() {
 		super(new File("plugins/TextureMe/packs.yml"));
 	}

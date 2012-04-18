@@ -14,7 +14,6 @@ import org.getspout.spoutapi.event.spout.SpoutCraftEnableEvent;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class EventListener implements Listener {
-	
 	private final TextureMe plugin = TextureMe.getInstance();
 	private final Logger logger = Logger.getInstance();
 	

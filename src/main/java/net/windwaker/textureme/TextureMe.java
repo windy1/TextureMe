@@ -15,7 +15,6 @@ import org.getspout.spoutapi.keyboard.Keyboard;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class TextureMe extends JavaPlugin {
-	
 	private static TextureMe instance;
 	private final Logger logger = Logger.getInstance();
 	private final Settings config = new Settings();
@@ -51,8 +50,8 @@ public class TextureMe extends JavaPlugin {
 			key = Keyboard.KEY_F7;
 		}
 
-		SpoutManager.getKeyBindingManager().registerBinding("textureme_open_selector", key, "Toggles the selector"
-		, new SelectorBindingDelegate(this), this);
+		SpoutManager.getKeyBindingManager().registerBinding(
+				"textureme_open_selector", key, "Toggles the selector", new SelectorBindingDelegate(this), this);
 
 		// Hello world!
 		logger.info("TextureMe v" + this.getDescription().getVersion() + " by Windwaker enabled!");
@@ -63,10 +62,6 @@ public class TextureMe extends JavaPlugin {
 		logger.info("TextureMe v" + this.getDescription().getVersion() + " by Windwaker disabled.");
 	}
 	
-	public void sendNotification(SpoutPlayer player, String message) {
-		player.sendNotification("Texture Packs", message, Material.getMaterial(config.getNotificationId()));
-	}
-	
 	public static TextureMe getInstance() {
 		return instance;
 	}
@@ -74,6 +69,10 @@ public class TextureMe extends JavaPlugin {
 	@Override
 	public Settings getConfig() {
 		return config;
+	}
+
+	public void sendNotification(SpoutPlayer player, String message) {
+		player.sendNotification("Texture Packs", message, Material.getMaterial(config.getNotificationId()));
 	}
 	
 	public Users getUsers() {

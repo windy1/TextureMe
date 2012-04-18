@@ -9,7 +9,6 @@ import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class FinishButton extends GenericButton {
-	
 	private TextureMe plugin;
 	private Creator creator;
 	

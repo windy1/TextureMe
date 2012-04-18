@@ -9,7 +9,6 @@ import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 public class AddButton extends GenericButton {
-	
 	private TextureMe plugin;
 	private ConfigMenu config;
 	private Creator creator;

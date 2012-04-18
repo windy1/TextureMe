@@ -4,7 +4,6 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 
 public class Logger {
-	
 	private static final Logger logger = new Logger();
 	
 	private Logger() {
